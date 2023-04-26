@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">My Age</string>
+
+    <string name="current_date_heading">Today:</string>
+    <string name="sample_date">22–04–2023</string>
+    <string name="dob_heading">Date of Birth:</string>
+    <string name="find_out">Find Out</string>
+
+    <string name="my_age_is">%1$s</string>
+
+    <string name="years_result_head">Years</string>
+    <string name="years_result">%1$s</string>
+
+    <string name="months_result_head">Months</string>
+    <string name="months_result">%1$s</string>
+
+    <string name="weeks_result_head">Weeks</string>
+    <string name="weeks_result">%1$s</string>
+
+    <string name="days_result_head">Days</string>
+    <string name="days_result">%1$s</string>
+
+    <string name="hours_result_head">Hours</string>
+    <string name="hours_result">%1$s</string>
+
+    <string name="minutes_result_head">Minutes</string>
+    <string name="minutes_result">%1$s</string>
+
+    <string name="seconds_result_head">Seconds</string>
+    <string name="seconds_result">%1$s</string>
+</resources>

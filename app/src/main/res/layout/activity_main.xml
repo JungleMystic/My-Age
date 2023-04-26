@@ -1,0 +1,435 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/app_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="40dp"
+            android:textSize="50sp"
+            android:textColor="@color/title_color"
+            android:textStyle="bold"
+            android:fontFamily="@font/font1"/>
+
+        <TextView
+            android:id="@+id/current_date_heading"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:text="@string/current_date_heading"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@id/app_title"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="40dp"/>
+
+        <TextView
+            android:id="@+id/current_date"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            tools:text="@string/sample_date"
+            android:layout_marginStart="20dp"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintStart_toEndOf="@id/current_date_heading"
+            app:layout_constraintTop_toTopOf="@id/current_date_heading"/>
+
+
+        <TextView
+            android:id="@+id/dob_heading"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:text="@string/dob_heading"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@id/current_date_heading"
+            app:layout_constraintTop_toBottomOf="@id/current_date_heading"
+            android:layout_marginTop="20dp"/>
+
+        <TextView
+            android:id="@+id/dob"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="@id/current_date"
+            app:layout_constraintTop_toTopOf="@id/dob_heading"
+            tools:text="@string/sample_date" />
+
+        <ImageButton
+            android:id="@+id/date_picker"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/calendar_icon"
+            android:scaleType="centerCrop"
+            android:backgroundTint="@color/white"
+            android:importantForAccessibility="no"
+            app:layout_constraintStart_toEndOf="@id/dob"
+            app:layout_constraintTop_toTopOf="@id/dob"
+            app:layout_constraintBottom_toBottomOf="@id/dob"/>
+
+        <Button
+            android:id="@+id/get_age_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/dob"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="40dp"
+            android:text="@string/find_out"
+            android:importantForAccessibility="no"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:backgroundTint="@color/title_color"/>
+
+        <com.google.android.material.progressindicator.CircularProgressIndicator
+            android:id="@+id/progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@id/get_age_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/get_age_button"
+            app:layout_constraintBottom_toBottomOf="@id/get_age_button"
+            android:layout_marginStart="50dp"
+            app:indicatorColor="@color/title_color"
+            app:trackColor="@color/white"
+            android:progress="80"
+            android:max="100"
+            android:indeterminate="true"
+            android:visibility="invisible"/>
+
+        <LinearLayout
+            android:id="@+id/full_age_result_LL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@id/get_age_button"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="20dp"
+            android:gravity="center">
+
+            <com.facebook.shimmer.ShimmerFrameLayout
+                android:id="@+id/shimmer_full_age"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                app:shimmer_auto_start="false">
+
+                <include layout="@layout/shimmer_tv2"/>
+
+            </com.facebook.shimmer.ShimmerFrameLayout>
+
+            <TextView
+                android:id="@+id/full_age_result"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:text="@string/my_age_is"
+                android:textSize="30sp"
+                android:gravity="center"
+                android:visibility="gone"
+                android:fontFamily="@font/font1"
+                android:textStyle="bold"
+                android:textColor="@color/result"/>
+
+        </LinearLayout>
+
+        <GridLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/full_age_result_LL"
+            android:layout_marginTop="20dp"
+            android:columnCount="3"
+            android:rowCount="3"
+            android:layout_margin="5dp">
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_margin="20dp"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/years_result_head"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/years_result_head"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/text_head"/>
+
+                <com.facebook.shimmer.ShimmerFrameLayout
+                    android:id="@+id/shimmer1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:shimmer_auto_start="false">
+
+                    <include layout="@layout/shimmer"/>
+
+                </com.facebook.shimmer.ShimmerFrameLayout>
+
+                <TextView
+                    android:id="@+id/years_result"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:visibility="gone"
+                    tools:text="@string/years_result"
+                    android:textSize="20sp"
+                    android:textColor="@color/black"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_margin="20dp"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/months_result_head"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/months_result_head"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/text_head"/>
+
+                <com.facebook.shimmer.ShimmerFrameLayout
+                    android:id="@+id/shimmer2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:shimmer_auto_start="false">
+
+                    <include layout="@layout/shimmer"/>
+
+                </com.facebook.shimmer.ShimmerFrameLayout>
+
+                <TextView
+                    android:id="@+id/months_result"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="@string/months_result"
+                    android:visibility="gone"
+                    android:layout_marginTop="20dp"
+                    android:textSize="20sp"
+                    android:textColor="@color/black" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_margin="20dp"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/weeks_result_head"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/weeks_result_head"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/text_head"/>
+
+                <com.facebook.shimmer.ShimmerFrameLayout
+                    android:id="@+id/shimmer3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:shimmer_auto_start="false">
+
+                    <include layout="@layout/shimmer"/>
+
+                </com.facebook.shimmer.ShimmerFrameLayout>
+
+                <TextView
+                    android:id="@+id/weeks_result"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="@string/weeks_result"
+                    android:layout_marginTop="20dp"
+                    android:visibility="gone"
+                    android:textSize="20sp"
+                    android:textColor="@color/black" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_margin="20dp"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/days_result_head"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/days_result_head"
+                    android:textStyle="bold"
+                    android:textSize="20sp"
+                    android:textColor="@color/text_head"/>
+
+                <com.facebook.shimmer.ShimmerFrameLayout
+                    android:id="@+id/shimmer4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:shimmer_auto_start="false">
+
+                    <include layout="@layout/shimmer"/>
+
+                </com.facebook.shimmer.ShimmerFrameLayout>
+
+                <TextView
+                    android:id="@+id/days_result"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="@string/days_result"
+                    android:visibility="gone"
+                    android:layout_marginTop="20dp"
+                    android:textSize="20sp"
+                    android:textColor="@color/black"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_margin="20dp"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/hours_result_head"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/hours_result_head"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/text_head"/>
+
+                <com.facebook.shimmer.ShimmerFrameLayout
+                    android:id="@+id/shimmer5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:shimmer_auto_start="false">
+
+                    <include layout="@layout/shimmer"/>
+
+                </com.facebook.shimmer.ShimmerFrameLayout>
+
+                <TextView
+                    android:id="@+id/hours_result"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="@string/hours_result"
+                    android:layout_marginTop="20dp"
+                    android:visibility="gone"
+                    android:textSize="20sp"
+                    android:textColor="@color/black"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_margin="20dp"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/minutes_result_head"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/minutes_result_head"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/text_head"/>
+
+                <com.facebook.shimmer.ShimmerFrameLayout
+                    android:id="@+id/shimmer6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:shimmer_auto_start="false">
+
+                    <include layout="@layout/shimmer"/>
+
+                </com.facebook.shimmer.ShimmerFrameLayout>
+
+                <TextView
+                    android:id="@+id/minutes_result"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="@string/minutes_result"
+                    android:visibility="gone"
+                    android:layout_marginTop="20dp"
+                    android:textSize="20sp"
+                    android:textColor="@color/black"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_margin="20dp"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/seconds_result_head"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/seconds_result_head"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/text_head"/>
+
+                <com.facebook.shimmer.ShimmerFrameLayout
+                    android:id="@+id/shimmer7"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:shimmer_auto_start="false">
+
+                    <include layout="@layout/shimmer"/>
+
+
+                </com.facebook.shimmer.ShimmerFrameLayout>
+
+                <TextView
+                    android:id="@+id/seconds_result"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    tools:text="@string/seconds_result"
+                    android:layout_marginTop="20dp"
+                    android:textSize="20sp"
+                    android:textColor="@color/black"/>
+
+            </LinearLayout>
+
+        </GridLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
