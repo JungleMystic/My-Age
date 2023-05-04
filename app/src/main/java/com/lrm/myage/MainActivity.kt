@@ -1,5 +1,6 @@
 package com.lrm.myage
 
+import android.animation.ObjectAnimator
 import android.app.DatePickerDialog
 import android.os.Build
 import android.os.Bundle
@@ -112,6 +113,11 @@ class MainActivity : AppCompatActivity() {
             binding.getAgeButton.setOnClickListener {
                 binding.progressBar.visibility = View.VISIBLE
 
+                ObjectAnimator.ofInt(binding.progressBar, "progress",100)
+                    .setDuration(3000)
+                    .start()
+
+
                 binding.fullAgeResult.text = ""
 
                 binding.shimmer1.visibility = View.VISIBLE
@@ -152,6 +158,7 @@ class MainActivity : AppCompatActivity() {
                     binding.secondsResult.text = resources.getString(R.string.seconds_result, differenceInSeconds.toString())
 
                     binding.progressBar.visibility = View.INVISIBLE
+                    binding.progressBar.progress = 0
 
                     binding.shimmer1.stopShimmer()
                     binding.shimmer2.stopShimmer()

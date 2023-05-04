@@ -109,9 +109,7 @@
             android:layout_marginStart="50dp"
             app:indicatorColor="@color/title_color"
             app:trackColor="@color/white"
-            android:progress="80"
             android:max="100"
-            android:indeterminate="true"
             android:visibility="invisible"/>
 
         <LinearLayout
